@@ -35,5 +35,12 @@ jobs:
       - name: Install dependencies
         run: go mod tidy
 
+      - name: Create .ssh directory and set permissions (test only)
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          touch ~/.ssh/id_rsa_test_valid
+          chmod 600 ~/.ssh/id_rsa_test_valid
+
       - name: Run tests
         run: go test -v ./...
