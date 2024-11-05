@@ -1,0 +1,50 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of the 'go build' command
+*.out
+
+# Vendor directory (depends on how you manage dependencies)
+vendor/
+
+# Dependency directories (for older versions of Go with 'dep' or vendoring)
+Godeps/
+
+# Output of `go test -cover`
+*.coverprofile
+*.cover.out
+
+# Coverage tool for Go
+coverage.out
+
+# IDEs and editor configurations
+.idea/
+.vscode/
+*.swp
+
+# Mac OS generated files
+.DS_Store
+
+# Windows generated files
+Thumbs.db
+ehthumbs.db
+
+# Go modules (if using Go modules, `go.mod` and `go.sum` should be included in version control)
+go.sum
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+
+# Archives
+*.tar
+*.gz
+*.zip
+
+# Git directory for avoiding tracking of uncommitted changes in go modules
+**/go.sum
