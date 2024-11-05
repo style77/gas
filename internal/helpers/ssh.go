@@ -6,10 +6,28 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
 
 	"golang.org/x/crypto/ssh"
 )
+
+// CommandExecutor defines an interface for executing commands.
+type CommandExecutor interface {
+	LookPath(file string) (string, error)
+	ExecCommand(name string, arg ...string) *exec.Cmd
+}
+
+// RealCommandExecutor is the real implementation of CommandExecutor.
+type RealCommandExecutor struct{}
+
+// LookPath wraps exec.LookPath.
+func (r RealCommandExecutor) LookPath(file string) (string, error) {
+	return exec.LookPath(file)
+}
+
+// ExecCommand wraps exec.Command.
+func (r RealCommandExecutor) ExecCommand(name string, arg ...string) *exec.Cmd {
+	return exec.Command(name, arg...)
+}
 
 // IsValidSSHKey checks if an ssh key is valid.
 func IsValidSSHKey(path interface{}) error {
@@ -44,35 +62,29 @@ func IsValidSSHKey(path interface{}) error {
 	return nil
 }
 
-// GenerateSSHKey generates an ssh key.
-func GenerateSSHKey(email string) (string, error) {
+// GenerateSSHKey generates an ssh key using the provided CommandExecutor.
+func GenerateSSHKey(email string, executor CommandExecutor) (string, error) {
 	var keyPath string
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		return "", fmt.Errorf("failed to get user home directory: %w", err)
 	}
 
-	if runtime.GOOS == "windows" {
-		keyPath = filepath.Join(homeDir, ".ssh", "id_rsa")
-	} else {
-		keyPath = filepath.Join(homeDir, ".ssh", "id_rsa")
-	}
+	keyPath = filepath.Join(homeDir, ".ssh", "id_rsa")
 
-	// Ensure the .ssh directory exists
 	sshDir := filepath.Dir(keyPath)
 	err = os.MkdirAll(sshDir, 0700)
 	if err != nil {
 		return "", fmt.Errorf("failed to create .ssh directory: %w", err)
 	}
 
-	cmd := exec.Command("ssh-keygen", "-t", "rsa", "-b", "4096", "-C", email, "-f", keyPath)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-
-	// Check if ssh-keygen exists
-	if _, err := exec.LookPath("ssh-keygen"); err != nil {
+	if _, err := executor.LookPath("ssh-keygen"); err != nil {
 		return "", errors.New("ssh-keygen not found")
 	}
+
+	cmd := executor.ExecCommand("ssh-keygen", "-t", "rsa", "-b", "4096", "-C", email, "-f", keyPath, "-N", "")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 
 	err = cmd.Run()
 	if err != nil {
