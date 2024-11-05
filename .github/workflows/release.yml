@@ -1,0 +1,39 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    name: Build Binaries
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21
+
+      - name: Build for Linux
+        run: GOOS=linux GOARCH=amd64 go build -o gas-${GITHUB_REF_NAME}-linux-amd64
+
+      - name: Build for macOS
+        run: GOOS=darwin GOARCH=amd64 go build -o gas-${GITHUB_REF_NAME}-darwin-amd64
+
+      - name: Build for Windows
+        run: GOOS=windows GOARCH=amd64 go build -o gas-${GITHUB_REF_NAME}-windows-amd64.exe
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            gas-${GITHUB_REF_NAME}-linux-amd64
+            gas-${GITHUB_REF_NAME}-darwin-amd64
+            gas-${GITHUB_REF_NAME}-windows-amd64.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
