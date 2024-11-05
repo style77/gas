@@ -2,6 +2,9 @@
 
 Github Account Switcher is a simple tool to switch between multiple GitHub accounts on the same machine. If you use your personal and work accounts on the same machine, you've probably felt the pain of switching between the two. This tool aims to make that process easier.
 
+> GAS is a work in progress. If you have any feedback or suggestions, please open an issue or a pull request.
+> GAS is written for cross-platform compatibility, but installation scripts are only available for Unix-based systems at the moment. If you use Windows, you can install GAS manually by downloading the binary from the [releases page](https://github.com/style77/gas/releases) and adding it to your PATH manually.
+
 ## Installation
 
 GAS installation is simple. Just run the following command:
@@ -10,7 +13,7 @@ GAS installation is simple. Just run the following command:
 curl -sSL https://raw.githubusercontent.com/style77/gas/master/scripts/install.sh | bash
 ```
 
-GAS installs itself in the `~/.gas` directory. It also adds the following line to your `.bashrc` or `.zshrc` file:
+GAS installs itself in the `/usr/local/bin` directory. It also adds the following line to your `.bashrc` or `.zshrc` file:
 
 ```bash
 export PATH=$PATH:$HOME/.gas
@@ -18,7 +21,7 @@ export PATH=$PATH:$HOME/.gas
 
 This allows you to run the `gas` command from anywhere in your terminal.
 
-(If you use windows, GAS will be installed in the `C:\Users\<username>\.gas` directory.)
+> Keep in mind for ssh key generation you need to have `ssh-keygen` installed on your system and GAS does not install it for you.
 
 ### Config file
 
