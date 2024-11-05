@@ -52,18 +52,16 @@ fi
 echo "Latest release found: $LATEST_RELEASE"
 
 # Construct download URL and filename
-FILENAME="${PROGRAM_NAME}-${LATEST_RELEASE}-${OS}-${ARCH}.tar.gz"
+FILENAME="${PROGRAM_NAME}-${OS}-${ARCH}"
 DOWNLOAD_URL="https://github.com/$GITHUB_USER/$GITHUB_REPO/releases/download/$LATEST_RELEASE/$FILENAME"
 
 echo "Downloading $FILENAME from $DOWNLOAD_URL..."
 curl -L -o "$FILENAME" "$DOWNLOAD_URL"
 
-# Extract the binary
-echo "Extracting the binary..."
-tar -xzf "$FILENAME"
-
 # Assume that the binary is named after the program
 BINARY_NAME="./$PROGRAM_NAME"
+
+mv "$FILENAME" "$BINARY_NAME"
 
 if [ ! -f "$BINARY_NAME" ]; then
     echo "Error: Could not find the extracted binary. Please ensure the archive structure is correct."
@@ -95,6 +93,6 @@ fi
 
 # Clean up
 echo "Cleaning up..."
-rm "$FILENAME"
+rm "$BINARY_NAME"
 
 echo "$PROGRAM_NAME installation complete. You can now use '$PROGRAM_NAME' in your terminal."
