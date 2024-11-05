@@ -2,7 +2,7 @@
 
 text. To install/update GAS run:
 ```bash
-curl -s https://raw.githubusercontent.com/style77/gas/master/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/style77/gas/master/scripts/install.sh | bash
 ```
 
 ## What's changed

@@ -7,7 +7,7 @@ Github Account Switcher is a simple tool to switch between multiple GitHub accou
 GAS installation is simple. Just run the following command:
 
 ```bash
-curl -s https://raw.githubusercontent.com/style77/gas/master/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/style77/gas/master/scripts/install.sh | bash
 ```
 
 GAS installs itself in the `~/.gas` directory. It also adds the following line to your `.bashrc` or `.zshrc` file:
