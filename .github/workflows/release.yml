@@ -23,20 +23,20 @@ jobs:
         run: go mod tidy
 
       - name: Build for Linux
-        run: GOOS=linux GOARCH=amd64 go build -o gas-${GITHUB_REF_NAME}-linux-amd64
+        run: GOOS=linux GOARCH=amd64 go build -o gas-linux-amd64
 
       - name: Build for macOS
-        run: GOOS=darwin GOARCH=amd64 go build -o gas-${GITHUB_REF_NAME}-darwin-amd64
+        run: GOOS=darwin GOARCH=amd64 go build -o gas-darwin-amd64
 
       - name: Build for Windows
-        run: GOOS=windows GOARCH=amd64 go build -o gas-${GITHUB_REF_NAME}-windows-amd64.exe
+        run: GOOS=windows GOARCH=amd64 go build -o gas-windows-amd64.exe
 
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            gas-${GITHUB_REF_NAME}-linux-amd64
-            gas-${GITHUB_REF_NAME}-darwin-amd64
-            gas-${GITHUB_REF_NAME}-windows-amd64.exe
+            gas-linux-amd64
+            gas-darwin-amd64
+            gas-windows-amd64.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
