@@ -46,6 +46,7 @@ func createTempFile(t *testing.T, dir, pattern, content string, perm os.FileMode
 }
 
 func TestIsValidSSHKey(t *testing.T) {
+	// ggignore-start
 	// Setup: Create temporary files for testing
 	validKeyContent := `-----BEGIN RSA PRIVATE KEY-----
 MIIBOgIBAAJBAKj34GkxFhD90vcNLYLInFEX6Ppy1tPf9Cnzj4p4WGeKLs1Pt8Qu
@@ -56,6 +57,7 @@ TQIhAKMSvzIBnni7ot/OSie2TmJLY4SwTQAevXysE2RbFDYdAiEBCUEaRQnMnbp7
 v/Ow5T0q5gIJAiEAyS4RaI9YG8EWx/2w0T67ZUVAw8eOMB6BIUg0Xcu+3okCIBOs
 /5OiPgoTdSy7bcF9IGpSE8ZgGKzgYQVZeN97YE00
 -----END RSA PRIVATE KEY-----`
+	// ggignore-end
 
 	invalidKeyContent := "this is not a valid ssh key"
 
