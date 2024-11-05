@@ -1,6 +1,6 @@
 # GAS {{ version }}
 
-text. To install/update GAS run:
+{{ text }}. To install/update GAS run:
 ```bash
 curl -sSL https://raw.githubusercontent.com/style77/gas/master/scripts/install.sh | bash
 ```
