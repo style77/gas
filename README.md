@@ -3,6 +3,7 @@
 Github Account Switcher is a simple tool to switch between multiple GitHub accounts on the same machine. If you use your personal and work accounts on the same machine, you've probably felt the pain of switching between the two. This tool aims to make that process easier.
 
 > GAS is a work in progress. If you have any feedback or suggestions, please open an issue or a pull request.
+
 > GAS is written for cross-platform compatibility, but installation scripts are only available for Unix-based systems at the moment. If you use Windows, you can install GAS manually by downloading the binary from the [releases page](https://github.com/style77/gas/releases) and adding it to your PATH manually.
 
 ## Installation
