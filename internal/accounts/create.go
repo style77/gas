@@ -90,7 +90,7 @@ func InteractiveNewAccount() {
 			fmt.Println("Since the name you provided is not a valid GitHub username, GAS cannot verify the key you provided. Continuing with the account creation process.")
 		}
 	} else {
-		SSHKeyPath, err = helpers.GenerateSSHKey(investigationAnswers.Email)
+		SSHKeyPath, err = helpers.GenerateSSHKey(investigationAnswers.Email, helpers.RealCommandExecutor{})
 		if err != nil {
 			fmt.Println(err.Error())
 			return
