@@ -38,5 +38,7 @@ jobs:
             gas-linux-amd64
             gas-darwin-amd64
             gas-windows-amd64.exe
+          body_path: .github/release_template.md
+          draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
