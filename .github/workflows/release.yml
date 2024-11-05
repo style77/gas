@@ -22,11 +22,6 @@ jobs:
       - name: Download dependencies
         run: go mod tidy
 
-      - name: Create .ssh directory for tmp SSH keys 
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-
       - name: Build for Linux
         run: GOOS=linux GOARCH=amd64 go build -o gas-linux-amd64
 
