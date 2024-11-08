@@ -45,6 +45,26 @@ This will prompt you to enter your account details interactively.
 gas switch
 ```
 
+- Setup repo:
+
+```bash
+gas setup
+```
+
+This will set up remoteUrl for the current repo to use the selected account.
+
+- Push/Commit to repo:
+
+Since v1.1.0, you can use gas as your git command. This will confirm that you use the correct account before pushing or committing. GAS works as a wrapper around the git command, so you can use it as you would use git normally.
+
+```bash
+gas push
+```
+
+```bash
+gas commit -m "your message"
+```
+
 Select the account you want to switch to from the list.
 
 ## Roadmap
