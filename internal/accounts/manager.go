@@ -87,6 +87,8 @@ func GetAccount(name string) (Account, error) {
 		Name:       accountMap["name"].(string),
 		Email:      accountMap["email"].(string),
 		SSHKeyPath: accountMap["sshkeypath"].(string),
+		SSHAlias:   accountMap["sshalias"].(string),
+		Id:         accountMap["id"].(int),
 	}, nil
 }
 
