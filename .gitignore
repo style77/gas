@@ -48,3 +48,5 @@ go.sum
 
 # Git directory for avoiding tracking of uncommitted changes in go modules
 **/go.sum
+
+*.cast
