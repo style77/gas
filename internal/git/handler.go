@@ -4,17 +4,10 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-
-	"github.com/spf13/cobra"
 )
 
 // HandleGitCommand runs the provided git command with the provided arguments.
-func HandleGitCommand(cmd *cobra.Command, args []string) {
-	if len(args) == 0 {
-		cmd.Help()
-		return
-	}
-
+func HandleGitCommand(args []string) error {
 	gitCmd := exec.Command("git", args...)
 	gitCmd.Stdout = os.Stdout
 	gitCmd.Stderr = os.Stderr
@@ -22,8 +15,10 @@ func HandleGitCommand(cmd *cobra.Command, args []string) {
 
 	err := gitCmd.Run()
 	if err != nil {
-		os.Exit(gitCmd.ProcessState.ExitCode())
+		return err
 	}
+
+	return nil
 }
 
 // UpdateGlobalGitConfig updates the global git configuration with the provided username and email.
@@ -36,4 +31,10 @@ func IsCurrentGlobal(email string) bool {
 	currentEmail, _ := exec.Command("git", "config", "--global", "user.email").Output()
 
 	return strings.TrimSpace(string(currentEmail)) == string(email)
+}
+
+func GetCurrentGlobal() string {
+	currentEmail, _ := exec.Command("git", "config", "--global", "user.email").Output()
+
+	return strings.TrimSpace(string(currentEmail))
 }
