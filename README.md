@@ -54,7 +54,7 @@ Select the account you want to switch to from the list.
 - [ ] Add account from command line
 - [ ] Remove account
 - [ ] List accounts
-- [ ] Add support for repo-specific accounts
+- [x] Add support for repo-specific accounts
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
