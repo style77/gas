@@ -1,6 +1,7 @@
 package git
 
 import (
+	"errors"
 	"os"
 	"os/exec"
 	"strings"
@@ -37,4 +38,20 @@ func GetCurrentGlobal() string {
 	currentEmail, _ := exec.Command("git", "config", "--global", "user.email").Output()
 
 	return strings.TrimSpace(string(currentEmail))
+}
+
+// GetCurrentRemoteUrl fetches the current URL of the specified remote.
+func GetCurrentRemoteUrl(remoteName string) string {
+	remoteUrl, _ := exec.Command("git", "remote", "get-url", remoteName).Output()
+	return strings.TrimSpace(string(remoteUrl))
+}
+
+// SetRemoteUrl sets the URL of the specified remote.
+func SetRemoteUrl(remoteName, remoteUrl string) error {
+	err := exec.Command("git", "remote", "set-url", remoteName, remoteUrl).Run()
+	if err != nil {
+		return errors.New("failed to set remote URL")
+	}
+
+	return nil
 }
