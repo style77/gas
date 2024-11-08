@@ -63,7 +63,14 @@ func InteractiveNewAccount() {
 
 	var SSHKeyPath string
 	if SSHKeyExists {
-		err = survey.AskOne(&survey.Input{Message: "What is the path to the ssh key you would like to use with this account?"}, &SSHKeyPath)
+		err = survey.AskOne(
+			&survey.Input{
+				Message: "What is the path to the ssh key you would like to use with this account?",
+				Suggest: func(toComplete string) []string {
+					files, _ := filepath.Glob(toComplete + "*")
+					return files
+				},
+			}, &SSHKeyPath)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
