@@ -8,8 +8,8 @@ import (
 // newCmd represents the new command
 var newCmd = &cobra.Command{
 	Use:   "new",
-	Short: "Add a new github account to the list of accounts on this machine.",
-	Long:  `Add a new github account to the list of accounts on this machine.`,
+	Short: "Add a new GitHub account",
+	Long:  `Add a new GitHub account to the list of accounts on this machine. Run this command to interactively provide the account details.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// if no arguments are passed, run the interactive version of the command
 		if len(args) == 0 {

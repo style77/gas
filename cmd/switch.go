@@ -10,13 +10,11 @@ import (
 // switchCmd represents the switch command
 var switchCmd = &cobra.Command{
 	Use:   "switch",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Switch between GitHub accounts",
+	Long: `Switch to a different GitHub account configured on this machine.
+	
+You can specify the account name with the --account flag,
+or select it interactively if no account is specified.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		accountRaw, _ := cmd.Flags().GetString("account")
 

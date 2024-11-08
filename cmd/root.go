@@ -13,13 +13,12 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gas",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "GitHub Account Switcher CLI tool",
+	Long: `GAS (GitHub Account Switcher) is a CLI tool to manage and switch
+between multiple GitHub accounts on the same machine.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+You can also use git commands as you normally would, and GAS will handle them
+with confirmation if you are using the correct account.`,
 }
 
 // isUnknownCommandError checks if the error is an "unknown command" error.
