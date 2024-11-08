@@ -7,7 +7,6 @@ import (
 )
 
 func TestExpandPath(t *testing.T) {
-	// Retrieve the current user's home directory for comparison
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		t.Fatalf("Failed to get user home directory: %v", err)
