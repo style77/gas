@@ -3,7 +3,9 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"strings"
 
+	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/style77/gas/internal/git"
@@ -18,13 +20,43 @@ examples and usage of using your application. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: git.HandleGitCommand,
+}
+
+// isUnknownCommandError checks if the error is an "unknown command" error.
+func isUnknownCommandError(err error) bool {
+	return err != nil && len(err.Error()) > 0 && err.Error()[0:15] == "unknown command"
 }
 
 func Execute() {
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
+	rootCmd.SilenceErrors = true
+
+	rootErr := rootCmd.Execute()
+	if rootErr != nil {
+		if isUnknownCommandError(rootErr) {
+			args := os.Args[1:]
+
+			// Check if this is desired account
+			currentAccount := git.GetCurrentGlobal()
+
+			var isProperAccount bool
+			survey.AskOne(&survey.Confirm{
+				Message: fmt.Sprintf("Do you want to run '%s' as '%s'?", strings.Join(args, " "), currentAccount),
+			}, &isProperAccount)
+
+			if isProperAccount {
+				err := git.HandleGitCommand(args)
+				if err != nil {
+					fmt.Println(err)
+				}
+			} else {
+				fmt.Println("Exiting.")
+				os.Exit(1)
+			}
+		} else {
+			rootCmd.SilenceErrors = false
+			fmt.Println(rootErr)
+			os.Exit(1)
+		}
 	}
 }
 
