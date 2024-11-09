@@ -69,6 +69,18 @@ gas commit -m "your message"
 
 Select the account you want to switch to from the list.
 
+### Setting up different acronym
+
+There is high possibility of 'GAS' being an acronym for different programs on your machine. e.g. GNU Assembler. 
+You can set up a different acronym for GAS by changing the binary file name to something else e.g. `github-switcher` and then changing `PATH` in your `.bashrc` or `.zshrc` file to point to the new binary file name.
+
+```bash
+export PATH=$PATH:$HOME/github-switcher
+
+# previously it was
+# export PATH=$PATH:$HOME/gas
+```
+
 ## Roadmap
 
 - [x] Interactive add account
