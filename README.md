@@ -2,7 +2,7 @@
 
 Github Account Switcher is a simple tool to switch between multiple GitHub accounts on the same machine. If you use your personal and work accounts on the same machine, you've probably felt the pain of switching between the two. This tool aims to make that process easier.
 
-[![asciicast](https://asciinema.org/a/5G3Jyy46JornJ9JTg9izEkY2v.png)](https://asciinema.org/a/5G3Jyy46JornJ9JTg9izEkY2v)
+[![asciicast](https://asciinema.org/a/IhujYFPVonyFwRXvv5Z1cjhTS.png)](https://asciinema.org/a/IhujYFPVonyFwRXvv5Z1cjhTS)
 
 > GAS is a work in progress. If you have any feedback or suggestions, please open an issue or a pull request.
 
